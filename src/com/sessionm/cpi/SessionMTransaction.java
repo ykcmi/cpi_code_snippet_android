@@ -184,7 +184,7 @@ public class SessionMTransaction {
     private String getPayload() {
     	//Android id should always be available.
     	String androidId = Secure.getString(appContext.getContentResolver(), Secure.ANDROID_ID);
-    	String payload = String.format(Locale.US, "appid=%s&androidid=%s", this.appKey, androidId);
+    	String payload = String.format(Locale.US, "appid=%s&androiddeviceid=%s", this.appKey, androidId);
     	//Android imei/meid requires READ_PHONE_STATE permission.
         if(hasPermission(permission.READ_PHONE_STATE)) {
         	TelephonyManager telman = (TelephonyManager) appContext.getSystemService(Context.TELEPHONY_SERVICE);
@@ -194,7 +194,7 @@ public class SessionMTransaction {
         if(hasPermission(permission.ACCESS_WIFI_STATE)) {
             WifiManager wm = (WifiManager) appContext.getSystemService(Context.WIFI_SERVICE);
             if (wm != null) {
-            	payload += String.format(Locale.US, "&androideviceid=%s", wm.getConnectionInfo().getMacAddress());
+            	payload += String.format(Locale.US, "&androidimei=%s", wm.getConnectionInfo().getMacAddress());
             }
         }
         return payload;
