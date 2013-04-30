@@ -188,13 +188,13 @@ public class SessionMTransaction {
     	//Android imei/meid requires READ_PHONE_STATE permission.
         if(hasPermission(permission.READ_PHONE_STATE)) {
         	TelephonyManager telman = (TelephonyManager) appContext.getSystemService(Context.TELEPHONY_SERVICE);
-        	payload += String.format(Locale.US, "&macaddress=%s", telman.getDeviceId());
+        	payload += String.format(Locale.US, "&androidimei=%s", telman.getDeviceId());
         }
         //Getting the mac address requires ACCESS_WIFI_STATE permission.
         if(hasPermission(permission.ACCESS_WIFI_STATE)) {
             WifiManager wm = (WifiManager) appContext.getSystemService(Context.WIFI_SERVICE);
             if (wm != null) {
-            	payload += String.format(Locale.US, "&androidimei=%s", wm.getConnectionInfo().getMacAddress());
+            	payload += String.format(Locale.US, "&macaddress=%s", wm.getConnectionInfo().getMacAddress());
             }
         }
         return payload;
