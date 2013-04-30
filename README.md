@@ -19,6 +19,7 @@ Usage
 This should generally be run when your app first starts up.
 
 Troubleshooting
+-----
 This class provides some logging of what it is doing, to turn it up do the following:
 
     adb shell setprop log.tag.SessionM.CPI DEBUG
